@@ -29,26 +29,30 @@ class RedirectPage extends React.Component {
     }
   }
 
+  _componentError() {
+    const {errorMessage} = this.state;
+    return (
+    <>
+      <Header>Seu novo encurtador de URL</Header>
+
+      <RedirectContainer className="text-center">
+        <FontAwesomeIcon size="3x" color="#f8d7da" icon="exclamation-triangle" />
+        <p className="m-3">{errorMessage}</p>
+        <a href="/" className="btn btn-primary">Encurtar nova URL</a>
+      </RedirectContainer>
+    </>
+    )}
+
+  _componentSuccess() {
+    return <p className="text-center">Redirecionando...</p>
+  }
+
   render() {
     const {errorMessage} = this.state;
     return (
-      (
-        <Container>
-          {errorMessage ? (
-            <>
-              <Header>Seu novo encurtador de urls.</Header>
-
-              <RedirectContainer className="text-center">
-                <FontAwesomeIcon size="3x" color="#f8d7da" icon="exclamation-triangle" />
-                <p className="m-3">{errorMessage}</p>
-                <a href="/" className="btn btn-primary">Encurtar nova URL</a>
-              </RedirectContainer>
-            </>
-          ) : (
-            <p className="text-center">Redirecionando...</p>
-          )}
-        </Container>
-      )
+      <Container>
+        {errorMessage ? this._componentError() : this._componentSuccess() }
+      </Container>
     )
   }
 }
