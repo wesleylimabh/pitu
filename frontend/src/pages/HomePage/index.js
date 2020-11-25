@@ -8,6 +8,8 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
 
+    this.currentDomain = window.location.href;
+
     this.state = {
       isLoading: false,
       url: '',
@@ -21,7 +23,7 @@ class HomePage extends React.Component {
 
     const { url } = this.state;
 
-    this.setState({ isLoading: true, errorMessage: '' })
+    this.setState({ isLoading: true, errorMessage: '', code: '' })
 
     if(!url) {
       this.setState({ isLoading: false, errorMessage: 'Informe uma url para encurtar.'})
@@ -70,14 +72,14 @@ class HomePage extends React.Component {
                   <InputGroup className="mb-3">
                     <FormControl 
                       autoFocus={true}
-                      defaultValue={`https://pitu.tk/${code}`}
+                      defaultValue={`${this.currentDomain}${code}`}
                       ref={ (input) => this.inputURL = input }
                     />
                     <InputGroup.Append>
                       <Button variant="outline-secondary" onClick={() => this.copyToClipboard()} >Copiar</Button>
                     </InputGroup.Append>
                   </InputGroup>
-                  <p>Para acompanhar as estatísticas, acesse https://pitu.tk/{code}/stats</p>
+              <p>Para acompanhar as estatísticas, acesse {this.currentDomain}{code}/stats</p>
                 </>
               )
             )}

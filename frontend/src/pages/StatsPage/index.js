@@ -11,6 +11,8 @@ class StatsPage extends React.Component {
   constructor(props) {
     super(props);
 
+    this.currentDomain = window.location.origin;
+
     this.state = {
       isLoading: false,
       shortenedURL: {},
@@ -59,7 +61,7 @@ class StatsPage extends React.Component {
 
     return (
       <>
-      <p><b>https://pitu.tk/{code}</b></p>
+      <p><b>{this.currentDomain}/{code}</b></p>
       <p>Redireciona para:<br/>{url}</p>
       <StatsRow>
         <StatsBox>
