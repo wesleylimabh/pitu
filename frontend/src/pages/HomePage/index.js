@@ -4,11 +4,10 @@ import { Container, InputGroup, FormControl, Button, Alert, Spinner } from 'reac
 import Header from '../../components/Header';
 import {ContentContainer, Form} from './styles'
 import ShortenerService from '../../services/shortenerService';
+import vars from '../../configs/vars';
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.currentDomain = window.location.href;
 
     this.state = {
       isLoading: false,
@@ -72,14 +71,14 @@ class HomePage extends React.Component {
                   <InputGroup className="mb-3">
                     <FormControl 
                       autoFocus={true}
-                      defaultValue={`${this.currentDomain}${code}`}
+                      defaultValue={ vars.HOST_APP + code }
                       ref={ (input) => this.inputURL = input }
                     />
                     <InputGroup.Append>
                       <Button variant="outline-secondary" onClick={() => this.copyToClipboard()} >Copiar</Button>
                     </InputGroup.Append>
                   </InputGroup>
-              <p>Para acompanhar as estatísticas, acesse {this.currentDomain}{code}/stats</p>
+              <p>Para acompanhar as estatísticas, acesse  { vars.HOST_APP + code }/stats</p>
                 </>
               )
             )}

@@ -7,11 +7,10 @@ import ptBR from 'date-fns/locale/pt-BR'
 import Header from '../../components/Header';
 import ShortenerService from '../../services/shortenerService'
 import { StatsBox, StatsBoxTitle, StatsContainer, StatsRow } from './styles'
+import vars from '../../configs/vars'
 class StatsPage extends React.Component {
   constructor(props) {
     super(props);
-
-    this.currentDomain = window.location.origin;
 
     this.state = {
       isLoading: false,
@@ -61,7 +60,7 @@ class StatsPage extends React.Component {
 
     return (
       <>
-      <p><b>{this.currentDomain}/{code}</b></p>
+      <p><b>{vars.HOST_APP + code}</b></p>
       <p>Redireciona para:<br/>{url}</p>
       <StatsRow>
         <StatsBox>
